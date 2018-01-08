@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "service",
+            "otherEntityName": "performer",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "service"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "performer",
+            "otherEntityName": "performer",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "finishDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20180108150816",
+    "entityTableName": "service",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

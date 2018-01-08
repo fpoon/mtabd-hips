@@ -1,0 +1,83 @@
+entity Performer {
+	username String,
+	firstName String,
+	lastName String,
+	email String,
+    age Integer
+}
+
+entity Service {
+	startDate String,
+    finishDate LocalDate
+}
+
+entity Message {
+	userAgent String,
+    ipv4 String,
+    text String
+}
+
+entity Product {
+	name String,
+    description String,
+    price Long,
+    currency String
+}
+
+entity Chat {
+	
+}
+
+entity Translation {
+    name String
+}
+
+entity Dictionary {
+    name String
+}
+
+entity DictionaryValue {
+    name String,
+    longName String
+}
+
+relationship OneToOne {
+	DictionaryValue{translation} to Translation
+}
+
+relationship OneToOne {
+	DictionaryValue{dictionary} to Dictionary
+}
+
+relationship ManyToMany {
+	Product{services} to Service
+}
+
+relationship ManyToOne {
+	Service{performer} to Performer
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToOne {
+	Service{service} to Performer
+}
+
+relationship OneToOne {
+	Chat{service} to Service
+}
+
+relationship OneToMany {
+	Chat{messages} to Message
+}
+
+relationship ManyToOne {
+	Message{user} to User
+}
+
+// Set pagination options
+paginate Chat, Message, Chat, DictionaryValue, Translation, Dictionary, Performer, Product, Service with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

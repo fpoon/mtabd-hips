@@ -22,33 +22,58 @@
     </appender>
 -->
 
-    <logger name="javax.activation" level="WARN"/>
-    <logger name="javax.mail" level="WARN"/>
-    <logger name="javax.xml.bind" level="WARN"/>
-    <logger name="ch.qos.logback" level="WARN"/>
-    <logger name="com.codahale.metrics" level="WARN"/>
-    <logger name="com.ryantenney" level="WARN"/>
-    <logger name="com.sun" level="WARN"/>
-    <logger name="com.zaxxer" level="WARN"/>
-    <logger name="io.undertow" level="WARN"/>
-    <logger name="io.undertow.websockets.jsr" level="ERROR"/>
-    <logger name="org.apache" level="WARN"/>
-    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
-    <logger name="org.bson" level="WARN"/>
-    <logger name="org.hibernate.validator" level="WARN"/>
-    <logger name="org.hibernate" level="WARN"/>
-    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
-    <logger name="org.springframework" level="WARN"/>
-    <logger name="org.springframework.web" level="WARN"/>
-    <logger name="org.springframework.security" level="WARN"/>
-    <logger name="org.springframework.cache" level="WARN"/>
-    <logger name="org.thymeleaf" level="WARN"/>
-    <logger name="org.xnio" level="WARN"/>
-    <logger name="springfox" level="WARN"/>
-    <logger name="sun.rmi" level="WARN"/>
-    <logger name="liquibase" level="WARN"/>
-    <logger name="LiquibaseSchemaResolver" level="INFO"/>
-    <logger name="sun.rmi.transport" level="WARN"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>org.h2.Driver</driverClass>
+            <url>jdbc:h2:file:./target/h2db/db/mtabd;ignore_unknown_settings=hsqldb</url>
+            <user>mtabd</user>
+            <password></password>
+        </connectionSource>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>mtabd.log</file>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<logger name="javax.activation" level="WARN"/>-->
+    <!--<logger name="javax.mail" level="WARN"/>-->
+    <!--<logger name="javax.xml.bind" level="WARN"/>-->
+    <!--<logger name="ch.qos.logback" level="WARN"/>-->
+    <!--<logger name="com.codahale.metrics" level="WARN"/>-->
+    <!--<logger name="com.ryantenney" level="WARN"/>-->
+    <!--<logger name="com.sun" level="WARN"/>-->
+    <!--<logger name="com.zaxxer" level="WARN"/>-->
+    <!--<logger name="io.undertow" level="WARN"/>-->
+    <!--<logger name="io.undertow.websockets.jsr" level="ERROR"/>-->
+    <!--<logger name="org.apache" level="WARN"/>-->
+    <!--<logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>-->
+    <!--<logger name="org.bson" level="WARN"/>-->
+    <!--<logger name="org.hibernate.validator" level="WARN"/>-->
+    <!--<logger name="org.hibernate" level="WARN"/>-->
+    <!--<logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>-->
+    <!--<logger name="org.springframework" level="WARN"/>-->
+    <!--<logger name="org.springframework.web" level="WARN"/>-->
+    <!--<logger name="org.springframework.security" level="WARN"/>-->
+    <!--<logger name="org.springframework.cache" level="WARN"/>-->
+    <!--<logger name="org.thymeleaf" level="WARN"/>-->
+    <!--<logger name="org.xnio" level="WARN"/>-->
+    <!--<logger name="springfox" level="WARN"/>-->
+    <!--<logger name="sun.rmi" level="WARN"/>-->
+    <!--<logger name="liquibase" level="WARN"/>-->
+    <!--<logger name="LiquibaseSchemaResolver" level="INFO"/>-->
+    <!--<logger name="sun.rmi.transport" level="WARN"/>-->
 
     <!-- https://logback.qos.ch/manual/configuration.html#shutdownHook and https://jira.qos.ch/browse/LOGBACK-1090 -->
     <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
@@ -56,5 +81,12 @@
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
+
+    <root>
+        <level value="info" />
+        <appender-ref ref="DB" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
 
 </configuration>

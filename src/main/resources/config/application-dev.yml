@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: DEBUG
-        pl.dawidsowa.mtabd: DEBUG
-        io.github.jhipster: DEBUG
+        ROOT: INFO
+        pl.dawidsowa.mtabd: INFO
+        io.github.jhipster: INFO
 
 spring:
     profiles:

@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Service</span> {{vm.service.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Start Date</span></dt>
+        <dd>
+            <span>{{vm.service.startDate}}</span>
+        </dd>
+        <dt><span>Finish Date</span></dt>
+        <dd>
+            <span>{{vm.service.finishDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Service</span></dt>
+        <dd>
+            <a ui-sref="performer-detail({id:vm.service.serviceId})">{{vm.service.serviceId}}</a>
+        </dd>
+        <dt><span>Performer</span></dt>
+        <dd>
+            <a ui-sref="performer-detail({id:vm.service.performerId})">{{vm.service.performerId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="service-detail.edit({id:vm.service.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

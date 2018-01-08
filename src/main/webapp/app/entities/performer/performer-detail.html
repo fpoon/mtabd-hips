@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span>Performer</span> {{vm.performer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Username</span></dt>
+        <dd>
+            <span>{{vm.performer.username}}</span>
+        </dd>
+        <dt><span>First Name</span></dt>
+        <dd>
+            <span>{{vm.performer.firstName}}</span>
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+            <span>{{vm.performer.lastName}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{vm.performer.email}}</span>
+        </dd>
+        <dt><span>Age</span></dt>
+        <dd>
+            <span>{{vm.performer.age}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="performer-detail.edit({id:vm.performer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

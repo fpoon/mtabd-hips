@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "translation",
+            "otherEntityName": "translation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "dictionaryValue"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "dictionary",
+            "otherEntityName": "dictionary",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "dictionaryValue"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180108150822",
+    "entityTableName": "dictionary_value",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

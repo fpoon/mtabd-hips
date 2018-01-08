@@ -1,0 +1,54 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myServiceLabel">Create or edit a Service</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.service.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.service.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_startDate">Start Date</label>
+            <input type="text" class="form-control" name="startDate" id="field_startDate"
+                    ng-model="vm.service.startDate"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_finishDate">Finish Date</label>
+                <div class="input-group">
+                    <input id="field_finishDate" type="text" class="form-control" name="finishDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.service.finishDate" is-open="vm.datePickerOpenStatus.finishDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('finishDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_service">Service</label>
+            <select class="form-control" id="field_service" name="service" ng-model="vm.service.serviceId" ng-options="performer.id as performer.id for performer in vm.services | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_performer">Performer</label>
+            <select class="form-control" id="field_performer" name="performer" ng-model="vm.service.performerId" ng-options="performer.id as performer.id for performer in vm.performers"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
